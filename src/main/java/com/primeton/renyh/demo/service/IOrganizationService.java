@@ -45,7 +45,16 @@ public interface IOrganizationService {
 	 * @throws Exception
 	 */
 	public ResponseResult<Organization> modifyOrganization(Organization organization) throws DemoException;
-	
+
+	/**
+	 * 查询所有部门
+	 * @return
+	 * @throws DemoException
+	 * @throws Exception
+	 */
+	public ResponseResult<List<Organization>> queryOrganizations()throws DemoException;
+
+
 	/**
 	 * 查询该部门下有多少子部门
 	 * @param id 上级部门id

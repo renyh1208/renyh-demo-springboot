@@ -26,12 +26,12 @@
 	  	u.age,u.sex,u.birthday,u.oid,o.department
 		FROM `renyh_user` as u JOIN `renyh_organization` as o
 		where 1=1 AND u.oid = o.oid
-	<if test="userName != null and userName != ''">
+        <if test="userName != null and userName != ''">
 		AND u.userName LIKE "%"#{userName}"%"
-	</if>
-	<if test="oid != null and oid != 0">
+	    </if>
+    	<if test="oid != null and oid != 0">
 		AND u.oid = #{oid}
-	</if> 
+	    </if>
     </select>
     
     <delete id="deleteUser" parameterType="Integer">

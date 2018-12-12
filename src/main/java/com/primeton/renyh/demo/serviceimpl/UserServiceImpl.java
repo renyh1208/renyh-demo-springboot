@@ -102,8 +102,6 @@ public class UserServiceImpl implements IUserService {
 			throw new DemoException(HttpStatus.INTERNAL_SERVER_ERROR, Common.USER_NOTEXISTS.getCode(),
 					Common.USER_NOTEXISTS.getMsg());
 		}
-		
-
 		// 校验要修改的用户名是否已经存在
 		checkUserName(user.getUserName());
 
@@ -126,6 +124,7 @@ public class UserServiceImpl implements IUserService {
 
 		// 校验数据是否合法
 		User valiData = ValidateUtil.loginUser_IsNotNull(user);
+
 
 		// 根据用户名和密码查询用户信息
 		User data = userDao.getByUserNameAndPassWord(valiData);
@@ -163,7 +162,6 @@ public class UserServiceImpl implements IUserService {
 		if(pageSize == null){
 			pageSize = 10;
 		}
-
 		PageHelper.startPage(pageIndex, pageSize);
 		List<User> users = userDao.queryPageUsers(userName,oid);
 		if(users == null){

@@ -109,7 +109,11 @@ public class User {
 		this.sex = sex;
 		this.birthday = birthday;
 	}
-
+	// 有参构造
+	public User(String userName, String passWord) {
+		this.userName = userName;
+		this.passWord = passWord;
+	}
 	// tostring方法
 	@Override
 	public String toString() {

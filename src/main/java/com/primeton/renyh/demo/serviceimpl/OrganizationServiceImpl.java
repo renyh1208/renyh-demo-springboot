@@ -22,6 +22,9 @@ import com.primeton.renyh.demo.service.IOrganizationService;
 @Transactional(rollbackFor = Exception.class)
 public class OrganizationServiceImpl implements IOrganizationService {
 
+	/**
+	 * 引入dao层
+	 */
 	@Autowired
 	private IOrganizationDao organizationDao;
 
@@ -55,8 +58,8 @@ public class OrganizationServiceImpl implements IOrganizationService {
 		}
 		return ResponseResult.error(ResponseResult.STATE_ERR);
 	}
-	
-	
+
+
 	/**
 	 * 根据id删除组织
 	 * @param id 组织id
@@ -135,6 +138,21 @@ public class OrganizationServiceImpl implements IOrganizationService {
 	}
 
 	/**
+	 * 查询所有部门
+	 * @return
+	 * @throws DemoException
+	 * @throws Exception
+	 */
+	public ResponseResult<List<Organization>> queryOrganizations()throws DemoException{
+		List<Organization> listOrganizations = organizationDao.queryOrganizations();
+		if (listOrganizations != null) {
+			return ResponseResult.success(listOrganizations, ResponseResult.STATE_OK);
+		}
+		return ResponseResult.error(ResponseResult.STATE_ERR);
+	}
+
+
+	/**
 	 * 查询该部门下有多少子部门
 	 * @param id 上级部门id
 	 * @return
@@ -145,11 +163,16 @@ public class OrganizationServiceImpl implements IOrganizationService {
 	@Transactional(readOnly = true)
 	public ResponseResult<List<Organization>> queryListOrganizations(Integer id) throws DemoException {
 		//判断参数是否为null和是否有该部门
-		if(id != null && organizationDao.getById(id) == null){
-			throw new DemoException(HttpStatus.INTERNAL_SERVER_ERROR, Common.DEPARTMENT_ISNOTEXIST.getCode(),
-					Common.DEPARTMENT_ISNOTEXIST.getMsg());
+//		if(id != null && organizationDao.getById(id) == null){
+//			throw new DemoException(HttpStatus.INTERNAL_SERVER_ERROR, Common.DEPARTMENT_ISNOTEXIST.getCode(),
+//					Common.DEPARTMENT_ISNOTEXIST.getMsg());
+//		}
+		List<Organization> listOrganizations = null;
+		if(id == null){
+			listOrganizations = organizationDao.queryOrganizations();
+		}else{
+			listOrganizations = organizationDao.queryListOrganizations(id);
 		}
-		List<Organization> listOrganizations = organizationDao.queryListOrganizations(id);
 		if (listOrganizations != null) {
 			return ResponseResult.success(listOrganizations, ResponseResult.STATE_OK);
 		}
@@ -185,10 +208,9 @@ public class OrganizationServiceImpl implements IOrganizationService {
 		return new ResponseResult<PageInfo>(pageinfo,"查询成功");
 	}
 
-	
-	
-	
-	
+
+
+
 	//校验有没有上级部门和上级部门存不存在
 	private void checkPidExists(Organization data) throws DemoException{
 		//判断上级部门是不是本部门

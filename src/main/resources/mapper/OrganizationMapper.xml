@@ -34,6 +34,11 @@
     	where oid =#{oid}
     </update>
 
+    <select id="queryOrganizations" resultType="com.primeton.renyh.demo.model.Organization">
+        select * from
+        renyh_organization
+    </select>
+
 	<select id="queryListOrganizations" resultType="com.primeton.renyh.demo.model.Organization">
        select * from
        renyh_organization

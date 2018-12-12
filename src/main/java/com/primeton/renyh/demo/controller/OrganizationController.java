@@ -86,7 +86,20 @@ public class OrganizationController {
 		return 	organizationService.modifyOrganization(organization);
 		
 	}
-	
+
+
+	/**
+	 * 查询组织所有部门
+	 * @return
+	 * @throws DemoException
+	 * @throws Exception
+	 */
+	@ApiOperation(value = "查询组织所有部门")
+	@GetMapping("/actions/query")
+	public ResponseResult<List<Organization>> queryOrganizations() throws DemoException {
+		return organizationService.queryOrganizations();
+	}
+
 	/**
 	 * 查询该部门下有多少子部门
 	 * @param id 上级部门id

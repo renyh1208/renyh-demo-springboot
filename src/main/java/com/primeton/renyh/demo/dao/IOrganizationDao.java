@@ -14,7 +14,6 @@ public interface IOrganizationDao {
 	/**
 	 * 查询组织
 	 * @param oid 组织id
-	 * @return
 	 * @author 任宇航
 	 * @throws Exception
 	 */
@@ -23,7 +22,6 @@ public interface IOrganizationDao {
 	/**
 	 * 查询组织
 	 * @param  department 部门名称
-	 * @return
 	 * @throws Exception
 	 */
 	Organization getByDepartment(String department);
@@ -53,23 +51,28 @@ public interface IOrganizationDao {
 	 * @throws Exception
 	 */
 	int updateOrganization(Organization organization);
-	
+
+	/**
+	 * 查询所有部门
+	 * @return
+	 * @throws DemoException
+	 * @throws Exception
+	 */
+	List<Organization> queryOrganizations();
+
 	/**
 	 * 查询该部门下有多少子部门
 	 * @param pid 上级部门id
 	 * @return
-	 * @throws DemoException 
-	 * @throws Exception
 	 */
 	List<Organization> queryListOrganizations(Integer pid);
 
 	/**
 	 * 查询该组织下员工列表
-	 * @param pageIndex 起始页数
-	 * @param pageSize	每页条数
 	 * @param oid		组织id
 	 * @return
 	 * @throws DemoException 
 	 */
 	List<User> queryOrganizationGroup(Integer oid);
+
 }
