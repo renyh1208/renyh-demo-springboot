@@ -13,7 +13,7 @@ public interface IUserDao {
 
 	/**
 	 * 查询用户
-	 * @param id 用户id
+	 * @param uid 用户id
 	 * @return
 	 * @throws DemoException
 	 */
@@ -21,16 +21,11 @@ public interface IUserDao {
 	
 	/**
 	 * 查询用户
-	 * @param userName 用户名称
-	 * @return
-	 * @throws DemoException
 	 */
 	User getByName(@Param("userName") String userName);
 	
 	/**
 	 * 删除用户
-	 * @param id 用户id
-	 * @return
 	 * @throws DemoException
 	 */
 	int deleteUser(Integer uid);
@@ -61,10 +56,7 @@ public interface IUserDao {
 
 	/**
 	 * 查询用户数据
-	 * @param pageIndex 起始页数
-	 * @param pageSize	每页数据
 	 * @param userName  用户名
-	 * @param oid		组织id
 	 * @return
 	 * @throws DemoException
 	 */
