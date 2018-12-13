@@ -168,7 +168,7 @@ public class OrganizationServiceImpl implements IOrganizationService {
 //					Common.DEPARTMENT_ISNOTEXIST.getMsg());
 //		}
 		List<Organization> listOrganizations = null;
-		if(id == null){
+		if(id == 0  ){
 			listOrganizations = organizationDao.queryOrganizations();
 		}else{
 			listOrganizations = organizationDao.queryListOrganizations(id);
