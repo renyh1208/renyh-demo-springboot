@@ -95,7 +95,7 @@ public class OrganizationController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value = "查询组织所有部门")
-	@GetMapping("/actions/query")
+	@GetMapping("/queryAll")
 	public ResponseResult<List<Organization>> queryOrganizations() throws DemoException {
 		return organizationService.queryOrganizations();
 	}
